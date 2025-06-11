@@ -1,6 +1,7 @@
 
 import './App.css'
 import { Header } from './components/header'
+import { SlideProvider } from './components/slideContext'
 import { Home } from './pages/home'
 
 function App() {
@@ -8,7 +9,10 @@ function App() {
   return (
     <>
       <Header/>
+      <SlideProvider>
       <Home/>
+      </SlideProvider>
+      
     </>
   )
 }
