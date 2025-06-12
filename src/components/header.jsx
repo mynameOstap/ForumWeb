@@ -4,7 +4,7 @@ export const Header = () => {
   return (
     <header className="sticky top-0  z-50 bg-black w-full min-h-24">
       <div className="p-8 text-white">
-        <div className="flex justify-between px-96 mt-6">
+        <div className="flex justify-center mt-6 gap-[10%]">
           <h1 className="text-2xl">Random Musing.</h1>
 
           <nav className="flex gap-12 items-center ">
