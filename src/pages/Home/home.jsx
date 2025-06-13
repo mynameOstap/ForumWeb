@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
-import { BackgroundPurple } from "../components/backgrondHomePurple";
-import { BackgroundBlue } from "../components/backgroundHomeBlue";
-import { useSlide } from "../components/slideContext";
-import background1 from "../assets/1.jpeg"
-import background2 from "../assets/2.jpeg"
-import background3 from "../assets/3.jpeg"
+import { BackgroundPurple } from "../../components/Home/backgroundHomePurple";
+import { BackgroundBlue } from "../../components/Home/backgroundHomeBlue";
+import { useSlide } from "../../components/Home/slideContext";
+import background1 from "../../assets/1.jpeg"
+import background2 from "../../assets/2.jpeg"
+import background3 from "../../assets/3.jpeg"
 export const Home = () => {
     const backgrounds = [
         <BackgroundPurple />,
@@ -52,7 +52,7 @@ export const Home = () => {
                 </div>
             </section>
             <section className="w-full bg-black">
-                    <div className="flex flex-col items-center justify-center p-30 gap-10 text-white">
+                    <div className="flex flex-col items-center justify-center p-30 gap-10 text-white text-center">
                         <div className="text-8xl">Join Groups</div>
                         <div className="max-w-[32rem] text-md  ">Explore your groups below to see what you can do, or head to Settings to start managing your Categories. </div>
                         <div className="text-md">+Read more</div>
