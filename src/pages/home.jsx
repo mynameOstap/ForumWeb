@@ -61,17 +61,17 @@ export const Home = () => {
             <section className="w-full bg-black">
                 <div className="flex object-cover h-[40rem] overflow-hidden cursor-pointer">
                    <div className="flex items-center justify-center group">
-                    <img src={background1} className="object-cover group-hover:opacity-0"  alt="" />
-                    <div className="absolute opacity-0 group-hover:opacity-100 text-6xl text-white">#ABOUT US</div>
+                    <img src={background1} className="object-cover transition-opacity duration-600 group-hover:opacity-0"  alt="" />
+                    <div className="absolute opacity-0 group-hover:opacity-100 transition-opacity duration-600 text-6xl text-white">#ABOUT US</div>
 
                     </div>
                    <div className="flex items-center justify-center group">
-                    <img src={background2} className="object-cover group-hover:opacity-0" alt="" />
-                    <div className="absolute opacity-0 group-hover:opacity-100 text-6xl text-white">#SITE RULE</div>
+                    <img src={background2} className="object-cover transition-opacity duration-600 group-hover:opacity-0" alt="" />
+                    <div className="absolute opacity-0 group-hover:opacity-100 transition-opacity duration-600  text-6xl text-white">#SITE RULE</div>
                     </div>
                    <div className="flex items-center justify-center group">
-                    <img src={background3} className="object-cover group-hover:opacity-0" alt="" />
-                    <div className="absolute opacity-0 group-hover:opacity-100 text-6xl text-white ">#CONTACT US</div>
+                    <img src={background3} className="object-cover transition-opacity duration-600 group-hover:opacity-0" alt="" />
+                    <div className="absolute opacity-0 group-hover:opacity-100 transition-opacity duration-600 text-6xl text-white ">#CONTACT US</div>
 
                     </div>
                 </div>
