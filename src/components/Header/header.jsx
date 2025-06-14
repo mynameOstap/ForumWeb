@@ -13,8 +13,8 @@ export const Header = () => {
             <div className="flex gap-4 cursor-pointer">
               <a onClick={()=> navigate("/")} className="hover:opacity-70">Home</a>
               <a onClick={()=> navigate("/groups")} className="hover:opacity-70">Groups</a>
-              <a href="#" className="hover:opacity-70">About</a>
-              <a href="#" className="hover:opacity-70">Site Rules</a>
+              <a onClick={()=> navigate("/about")} className="hover:opacity-70">About</a>
+              <a onClick={()=> navigate("/rules")} className="hover:opacity-70">Site Rules</a>
               <a href="#" className="hover:opacity-70">Contact</a>
               <a href="#" className="hover:opacity-70">Members</a>
             </div>

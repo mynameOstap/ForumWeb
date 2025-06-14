@@ -53,7 +53,7 @@ export const Home = () => {
             </section>
             <section className="w-full bg-black">
                     <div className="flex flex-col items-center justify-center p-30 gap-10 text-white text-center">
-                        <div className="text-8xl">Join Groups</div>
+                        <div className="text-8xl font-bold">Join Groups</div>
                         <div className="max-w-[32rem] text-md  ">Explore your groups below to see what you can do, or head to Settings to start managing your Categories. </div>
                         <div className="text-md">+Read more</div>
                     </div>

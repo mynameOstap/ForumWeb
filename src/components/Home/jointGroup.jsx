@@ -16,7 +16,7 @@ export const JointGroup = () =>{
     
     return(
         <>
-        <div className={`flex justify-center items-center ${animate ? "anim-slide-in" : ""}`}
+        <div className={`flex justify-center items-center cursor-pointer text-white hover:opacity-70 ${animate ? "anim-slide-in" : ""}`}
         >
             <p className="text-xl">
              +Join Group

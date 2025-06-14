@@ -3,6 +3,8 @@ import { Layout } from "./layout"
 import { Home } from "../pages/Home/home"
 import { SlideProvider } from "../components/Home/slideContext"
 import { Groups } from "../pages/Groups/groups"
+import { About } from "../pages/About/about"
+import { SiteRules } from "../pages/SiteRules/siteRules"
 
  
 
@@ -22,6 +24,15 @@ export const Router = () => {
                     {
                         path: "/groups",
                         element: <Groups/>
+                    },
+                    {
+                        path:"/about",
+                        element: <About/>
+
+                    },
+                    {
+                        path:"/rules",
+                        element:<SiteRules/>
                     }
                 ]
             }
