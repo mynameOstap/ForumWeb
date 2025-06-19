@@ -5,6 +5,8 @@ import { SlideProvider } from "../components/Home/slideContext"
 import { Groups } from "../pages/Groups/groups"
 import { About } from "../pages/About/about"
 import { SiteRules } from "../pages/SiteRules/siteRules"
+import { Contact } from "../pages/Contact/contact"
+import { Members } from "../pages/Members/members"
 
  
 
@@ -33,6 +35,14 @@ export const Router = () => {
                     {
                         path:"/rules",
                         element:<SiteRules/>
+                    },
+                    {
+                        path:"/contact",
+                        element:<Contact/>
+                    },
+                    {
+                        path:"/members",
+                        element:<Members/>
                     }
                 ]
             }
