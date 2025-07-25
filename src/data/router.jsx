@@ -7,6 +7,8 @@ import { About } from "../pages/About/about"
 import { SiteRules } from "../pages/SiteRules/siteRules"
 import { Contact } from "../pages/Contact/contact"
 import { Members } from "../pages/Members/members"
+import { GroupPage } from "../pages/Groups/groupPage"
+import { Profile } from "../pages/Account/profile"
 
  
 
@@ -43,6 +45,14 @@ export const Router = () => {
                     {
                         path:"/members",
                         element:<Members/>
+                    },
+                    {
+                        path: "/groups/:groupId",
+                        element:<GroupPage/>
+                    },
+                    {
+                        path: "/profile",
+                        element:<Profile/>
                     }
                 ]
             }

@@ -2,9 +2,11 @@ import { useEffect, useState } from "react";
 import axiosInstance from "../../api/axiosInstance"; 
 import { useSelector,useDispatch } from "react-redux";
 import { loginSuccess } from "../../store/authSlice";
+import { Spinner } from "../../components/Loader/Spinner";
 
 export const Auth = ({ open, onClose }) => {
   const [register, setRegister] = useState(false);
+  const [isLoading, setLoading] = useState(false)
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [confirm, setConfirm] = useState("");
@@ -13,7 +15,12 @@ export const Auth = ({ open, onClose }) => {
   const dispatch = useDispatch();
     const {isLogged,user} = useSelector(state => state.authCheck); 
 
-
+  const onCloseHandler = () =>{
+    onClose();
+    setUsername("")
+    setPassword("")
+    setConfirm("")
+  }
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
     return () => {
@@ -22,6 +29,7 @@ export const Auth = ({ open, onClose }) => {
   }, [open]);
 
   const handleSubmit = async () => {
+    setLoading(true)
     setError("");
 
     if (!username || !password || (register && !confirm)) {
@@ -51,8 +59,8 @@ export const Auth = ({ open, onClose }) => {
           name: username,
           password,
         });
-        axiosInstance.defaults.headers.common['Authorization'] =  `Bearer ${res.data.token}`;
         dispatch(loginSuccess(res.data.user));
+        localStorage.setItem("refreshToken",res.data.refreshToken)
         console.log("Login done:", res.data);
       }
 
@@ -63,6 +71,10 @@ export const Auth = ({ open, onClose }) => {
     } catch (err) {
       console.error(err);
       setError(err.response?.data?.message || "Server erroe.");
+    }
+    finally
+    {
+      setLoading(false)
     }
   };
 
@@ -143,7 +155,7 @@ export const Auth = ({ open, onClose }) => {
         <div className="flex gap-4 justify-end mt-4 cursor-pointer">
           <button
             className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600 transition"
-            onClick={onClose}
+            onClick={()=> onCloseHandler()}
           >
             Close
           </button>
@@ -151,7 +163,7 @@ export const Auth = ({ open, onClose }) => {
             onClick={handleSubmit}
             className="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700 transition"
           >
-            {register ? "Register" : "Login"}
+            {isLoading ? (<Spinner size={12}/>) : ((register ? "Register" : "Login"))}
           </button>
         </div>
 
