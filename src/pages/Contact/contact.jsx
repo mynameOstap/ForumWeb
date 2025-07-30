@@ -5,9 +5,9 @@ export const Contact = () => {
     return (
         <>
             <section className="bg-black h-full flex justify-center items-center ">
-                <div className="w-[70%] flex text-white ">
+                <div className="w-[70%] flex flex-col lg:flex-row text-white items-center ">
                     <div className="flex flex-col gap-12 justify-center items-center w-[50%]">
-                        <div className="text-6xl font-bold w-[40%]">Have something to say? Contact us!</div>
+                        <div className="lg:text-6xl text-3xl  font-bold w-[40%]">Have something to say? Contact us!</div>
                         <div>+ 123-456-7890   I    info@mysite.com</div>
                     </div>
                     <div className="flex flex-col w-[50%] justify-center items-center">
@@ -32,10 +32,10 @@ export const Contact = () => {
                             <textarea
                                 placeholder="Type your message here..."
                                 rows={4}
-                                className="border  w-[100%] px-4 py-2  text-white "
+                                className="border  w-[100%] px-4 lg:py-2 py-1 text-white "
                             />
-                          
-                            <div className="flex items-center justify-center border p-2 px-8 w-[30%] absolute bottom-[-11rem] cursor-pointer bg-black  hover:text-gray-300 hover:border-gray-400 ">
+
+                            <div className="flex items-center justify-center border p-2 px-8 w-[30%] absolute bottom-[-2rem] lg:bottom-[-11rem] cursor-pointer bg-black  hover:text-gray-300 hover:border-gray-400 ">
                                 Submit
                             </div>
                             </div>

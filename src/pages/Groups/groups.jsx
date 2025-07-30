@@ -22,7 +22,7 @@ export const Groups = () => {
     const [selectedGroup, setSelectedGroup] = useState({ groupId: "", groupName: "" });
     const [activeTabGroup, setActiveTabGroup] = useState("Suggested groups")
     const [underline, setUnderline] = useState(null);
-    const [searchInput,setSearchInput] = useState("")
+    const [searchInput, setSearchInput] = useState("")
     const tabRef = useRef({});
     const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
@@ -61,7 +61,7 @@ export const Groups = () => {
     }
     const fetchGroups = async () => {
         try {
-            const resSuggestionGroup = await axiosInstance.get("suggestion-groups")
+            const resSuggestionGroup = await axiosInstance.get("/suggestion-groups")
             setSuggestionGroup(resSuggestionGroup.data || [])
             const resMyGroup = await axiosInstance.get("/my-groups");
             setMyGroup(resMyGroup.data || []);
@@ -89,33 +89,34 @@ export const Groups = () => {
                         </div>
                     </div>
                     <div className="flex justify-center ">
-                        <div className="w-[60%]">
+                        <div className="lg:w-[60%]">
                             <div className="flex flex-col gap-10">
                                 <div className="flex flex-col gap-2">
                                     <div className="text-2xl font-semibold ">Groups Feed</div>
                                     <div>View groups and posts below.</div>
                                 </div>
                                 <div className="flex flex-col lg:flex-row gap-10">
-                                    <div className="w-full lg:w-2/3 flex flex-col gap-4 order-2 lg:order-1">
+                                    <div className="w-full   flex flex-col gap-4 order-2 lg:order-1">
                                         {isLogged && (
                                             <div className=" border border-white flex flex-col">
-                                                <div className=" flex w-full max-w-screen-lg px-4 items-center justify-center gap-[2rem] p-8 hover:bg-gray-950 cursor-pointer transition-colors duration-200 ease-in-out"
+                                                <div className=" flex w-full max-w-screen-lg px-4 items-center justify-center gap-[2rem]
+                                                 p-8 hover:bg-gray-950 cursor-pointer transition-colors duration-200 ease-in-out"
                                                     onClick={() => setSelectGroups(true)}
                                                 >
-                                                    <img src={user?.avatarUrl ? `${API_BASE_URL}${user.avatarUrl}` : userIcon} className="w-[2rem] h-[2rem] rounded-full" />
+                                                    <img src={user?.avatarUrl ? `${API_BASE_URL}${user.avatarUrl}` : userIcon} className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 lg:w-8 lg:h-8 rounded-full" />
                                                     <input
                                                         type="text"
                                                         placeholder="Share something...."
-                                                        className="border-[0.5px] border-whit w-[60%] px-4 py-2  text-white"
+                                                        className="border-[0.5px] border-white w-[40%] md:w-[50%] lg:w-[60%] px-4 md:py-2  text-white"
                                                     />
-                                                    <button className="border border-white px-4 py-1 hover:bg-white hover:text-black transition">
+                                                    <button className="border p-2 border-white sm:px-2 md:px-4 py-1 hover:bg-white hover:text-black transition text-xs sm:text-sm md:text-base lg:text-lg ">
                                                         Create Post
                                                     </button>
                                                 </div>
-                                                <div className="flex h-[40%] border-t items-center divide-x divide-white">
-                                                    <div className="flex-1 text-center cursor-pointer hover:underline" onClick={() => setSelectGroups(true)} >Photo</div>
-                                                    <div className="flex-1 text-center cursor-pointer hover:underline" onClick={() => setSelectGroups(true)}>Video</div>
-                                                    <div className="flex-1 text-center cursor-pointer hover:underline" onClick={() => setSelectGroups(true)}>GIF</div>
+                                                <div className="flex  border-t items-center divide-x divide-white">
+                                                    <div className="flex-1 text-center cursor-pointer hover:underline text-xs sm:text-sm md:text-base lg:text-lg " onClick={() => setSelectGroups(true)} >Photo</div>
+                                                    <div className="flex-1 text-center cursor-pointer hover:underline text-xs sm:text-sm md:text-base lg:text-lg " onClick={() => setSelectGroups(true)}>Video</div>
+                                                    <div className="flex-1 text-center cursor-pointer hover:underline text-xs sm:text-sm md:text-base lg:text-lg " onClick={() => setSelectGroups(true)}>GIF</div>
                                                 </div>
                                             </div>
 
@@ -126,7 +127,7 @@ export const Groups = () => {
                                                     <div className="text-4xl">No Posts to Show</div>
                                                     <div>Check out the available groups for you to join and start posting.</div>
                                                 </div>
-                                            ) : (isLoading ? (<FullPageSpinner />) : (<div className="flex flex-col gap-4">
+                                            ) : (isLoading ? (<FullPageSpinner />) : (<div className="flex flex-col gap-4 ">
                                                 {posts.map((post) => (
                                                     <PostCardGroup
                                                         key={post.id}
@@ -141,6 +142,7 @@ export const Groups = () => {
                                                         image={post.imageUrl}
                                                         authorId={post.userId}
                                                         fetchPost={fetchPost}
+                                                        comment={post.comment}
                                                     />
                                                 ))}
                                             </div>)
@@ -156,20 +158,20 @@ export const Groups = () => {
 
                                     </div>
 
-                                    <div className="w-full lg:w-1/3 border border-white flex flex-col p-4 gap-6 max-h-[30rem] lg:h-auto order-1 lg:order-2">
+                                    <div className=" lg:w-[40%] xl:w-[60%] border border-white flex flex-col p-4 gap-6 max-h-[25rem] sm:max-h-[30rem] lg:h-auto order-1 lg:order-2 ">
                                         <div className="flex items-center border border-white rounded px-3 py-2 gap-2">
-                                            <div className="text-white">🔍</div>
+
                                             <input
                                                 type="text"
                                                 placeholder="Search groups..."
-                                                className="bg-transparent outline-none text-white placeholder-gray-400 w-full"
-                                                onChange={(e)=> setSearchInput(e.target.value)}
+                                                className="bg-transparent outline-none text-white placeholder-gray-400 text-xs sm:text-sm md:text-base lg:text-lg "
+                                                onChange={(e) => setSearchInput(e.target.value)}
                                             />
                                         </div>
                                         <div className="flex justify-between relative">
                                             <div
                                                 ref={(el) => (tabRef.current["Suggested groups"] = el)}
-                                                className={`text-lg cursor-pointer ${activeTabGroup === "Suggested groups" ? "font-bold" : ""
+                                                className={`text-xs sm:text-sm md:text-base lg:text-lg  cursor-pointer ${activeTabGroup === "Suggested groups" ? "font-bold" : ""
                                                     }`}
                                                 onClick={() => setActiveTabGroup("Suggested groups")}
                                             >
@@ -177,7 +179,7 @@ export const Groups = () => {
                                             </div>
                                             <div
                                                 ref={(el) => (tabRef.current["My Groups"] = el)}
-                                                className={`text-lg cursor-pointer ${activeTabGroup === "My Groups" ? "font-bold" : ""
+                                                className={`text-xs sm:text-sm md:text-base lg:text-lg  cursor-pointer ${activeTabGroup === "My Groups" ? "font-bold" : ""
                                                     }`}
                                                 onClick={() => setActiveTabGroup("My Groups")}
                                             >
@@ -201,15 +203,15 @@ export const Groups = () => {
                                                     <div>You don't have any group</div>
                                                 ) : (
                                                     <>
-                                                        <div className="flex flex-col gap-1 overflow-y-auto overflow-x-hidden max-h-[20rem] pr-1">
+                                                        <div className="flex flex-col gap-1 overflow-y-auto overflow-x-hidden max-h-[20rem] pr-1 ">
                                                             {suggestionGroup.filter(group => group.name.toLowerCase().includes(searchInput.toLowerCase())).map((value) => (
-                                                                <Link to={`/groups/${value.id}`} key={value.id}>
+                                                                <Link to={`/groups/${value.id}`} key={value.id} >
                                                                     <GroupCard name={value.name} group={value} members={value.GroupMembers?.length || 0} />
                                                                 </Link>
                                                             ))}
                                                         </div>
                                                         <button
-                                                            className="border border-white px-4 py-1 hover:bg-white hover:text-black transition"
+                                                            className="border border-white px-4 py-1 hover:bg-white hover:text-black transition text-xs sm:text-sm md:text-base lg:text-lg  "
                                                             onClick={() => setOpenCreateGroups(true)}
                                                         >
                                                             +Create Group
@@ -229,12 +231,12 @@ export const Groups = () => {
                                                     <div className="flex flex-col gap-1 overflow-y-auto overflow-x-hidden max-h-[20rem] pr-1">
                                                         {myGroup.filter(group => group.name.toLowerCase().includes(searchInput.toLowerCase())).map((value) => (
                                                             <Link to={`/groups/${value.id}`} key={value.id}>
-                                                                <GroupCard name={value.name} group={value} members={value.groupMembers?.length || 0} />
+                                                                <GroupCard name={value.name} group={value} members={value.GroupMembers?.length || 0} />
                                                             </Link>
                                                         ))}
                                                     </div>
                                                     <button
-                                                        className="border border-white px-4 py-1 hover:bg-white hover:text-black transition"
+                                                        className="border border-white px-4 py-1 hover:bg-white hover:text-black transition text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl"
                                                         onClick={() => setOpenCreateGroups(true)}
                                                     >
                                                         +Create Group

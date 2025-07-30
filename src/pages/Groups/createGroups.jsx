@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import axiosInstance from "../../api/axiosInstance";
 import { Spinner } from "../../components/Loader/Spinner";
 
-
+const MAX_LENGTH= 20
 
 export const CreateGroups = ({ open, onClose,getGroups }) => {
     const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
@@ -11,9 +11,9 @@ export const CreateGroups = ({ open, onClose,getGroups }) => {
     const [loading, setLoading] = useState(false)
     const [preview,setPreview] = useState(null);
     const [selectedFile, setSelectedFile] = useState(null);
-
     const fileInputRef = useRef(null);
 
+    const isLimited = groupname.length >= MAX_LENGTH;
     const handleUploadAvatar = () =>{
         fileInputRef.current.click()
     }
@@ -116,14 +116,19 @@ export const CreateGroups = ({ open, onClose,getGroups }) => {
                        
                     </div>
 
-
+                    <div className="relative w-full">
                     <input
                         type="text"
                         placeholder="Group Name"
                         value={groupname}
-                        onChange={(e) => setGroupname(e.target.value)}
-                        className="border border-gray-600 px-4 py-2 rounded text-black bg-transparent outline-none"
+                        onChange={ (e) => {if(e.target.value.length <= MAX_LENGTH) {setGroupname(e.target.value)}} }
+                        className="w-full border border-gray-600 px-4 py-2 rounded text-black bg-transparent outline-none"
                     />
+                     <div className={`absolute right-2 top-1/2 -translate-y-1/2 text-sm ${isLimited ? "text-red-500 font-semibold" : "text-gray-500"
+                                }`}>
+                                {groupname.length}/{MAX_LENGTH}
+                            </div>
+                    </div>
 
                     <select
                         value={privacy}

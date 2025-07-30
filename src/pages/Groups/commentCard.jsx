@@ -8,7 +8,7 @@ export const CommentCard = ({ id, createdAt, content, author }) => {
   const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
     return (
-        <section className="flex gap-4 border border-white rounded-lg p-4 bg-black text-white transition">
+        <section className="flex gap-4 border border-white rounded-lg p-4 text-white transition">
             <img
                 src={user?.avatarUrl ? `${API_BASE_URL}${user.avatarUrl}` : unknowImg}
                 alt={author?.name || "unknown"}

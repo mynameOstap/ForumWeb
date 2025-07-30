@@ -6,7 +6,7 @@ export const Members = () => {
         <>
             <section className="bg-black items-center h-full w-screen">
                 <div className="flex flex-col items-center text-white">
-                    <div className="flex w-[45%] justify-between  mt-[4rem]">
+                    <div className="flex flex-col lg:w-[45%] space-y-4 justify-between lg:flex-row  lg:mt-[4rem]">
                         <div className="flex gap-3">
                             <div>All Members</div>
                             <div>O</div>

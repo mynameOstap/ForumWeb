@@ -26,7 +26,10 @@ export const ThreeDotsModal = ({ role, open, onClose, onGroupSettingClick }) => 
 
 
 export const ThreeDotsModalPost = ({ open, onClose, authorId, postId, fetchPost, openReport }) => {
-    const { user } = useSelector(state => state.authCheck);
+    const { isLogged, user } = useSelector(state => state.authCheck);
+    const dispatch = useDispatch();
+
+  
 
     const deletePost = async () => {
         try {
@@ -42,7 +45,7 @@ export const ThreeDotsModalPost = ({ open, onClose, authorId, postId, fetchPost,
 
     return (
         <div className="absolute right-0 mt-2 bg-white z-50 text-black border border-gray-200 rounded-lg shadow-lg min-w-[8rem] max-w-[20rem]">
-            {user.id != authorId ? (
+            {user.id == authorId ? (
                 <div className="flex flex-col p-2">
                     <div
                         className="flex rounded cursor-pointer hover:bg-gray-100 text-red-600"

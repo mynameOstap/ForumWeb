@@ -28,7 +28,7 @@ export const CommentModal = ({ open, onClose, comments, id, fetchComment }) => {
                 open ? "translate-y-0" : "translate-y-full"
             }`}
         >
-            <div className="relative w-[50%] h-[80vh]  text-white rounded-t-4xl p-6 flex flex-col">
+            <div className="relative lg:w-[50%] h-[80vh]  text-white rounded-t-4xl p-6 flex flex-col">
                 <button
                     onClick={onClose}
                     className="absolute top-2 right-4 text-3xl text-white hover:text-gray-300 cursor-pointer"
@@ -42,7 +42,7 @@ export const CommentModal = ({ open, onClose, comments, id, fetchComment }) => {
                         value={commentText}
                         onChange={(e) => setCommentText(e.target.value)}
                         placeholder="Write a comment..."
-                        className="flex-1 border border-white rounded-lg px-4 py-2 bg-black text-white placeholder-gray-400 focus:outline-none"
+                        className="flex-1 border border-white rounded-lg px-4 py-2 text-white placeholder-gray-400 focus:outline-none"
                     />
                     <button
                         onClick={handleSendComment}
@@ -52,7 +52,7 @@ export const CommentModal = ({ open, onClose, comments, id, fetchComment }) => {
                     </button>
                 </div>
                 <div className="flex-1 overflow-y-auto space-y-3 pr-2">
-                    {comments.length > 0 ? (
+                    {comments?.length > 0 ? (
                         comments.map((value) => (
                             <CommentCard
                                 key={value.id}

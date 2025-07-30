@@ -22,25 +22,25 @@ export const BurgerMenu = ({ open, onClose, navLinks, isLogged, user, API_BASE_U
 
   return (
     <section
-      className={`fixed top-0 left-0 lg:hidden w-full h-full bg-black flex justify-center z-49 transition-transform duration-500 ${
+      className={`fixed top-0 left-0 lg:hidden w-full h-full bg-black flex justify-center z-40 transition-transform duration-500 ${
         open ? "translate-y-0" : "-translate-y-full"
       }`}
     >
-      <div className="flex flex-col gap-8 cursor-pointer items-center justify-center">
+      <div className="flex flex-col md:gap-8 gap-2 cursor-pointer items-center justify-center">
        
         {navLinks.map((link) => (
           <a
             key={link.path}
             onClick={() => handleClick(link.path)}
-            className="text-white hover:opacity-70"
+            className="text-white text-2xl hover:opacity-70"
           >
             {link.label}
           </a>
         ))}
 
         {isLogged ? (
-          <div className="flex flex-col items-center gap-2 mt-10">
-            <div className="flex items-center gap-2">
+          <div className="flex flex-col items-center gap-2 mt-10 text-2xl">
+            <div className="flex items-center gap-2 ">
               <img
                 src={user?.avatarUrl ? `${API_BASE_URL}${user.avatarUrl}` : logo}
                 alt="user icon"

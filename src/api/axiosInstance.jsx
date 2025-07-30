@@ -1,22 +1,23 @@
 import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 
 
 const axiosInstance = axios.create({
-  baseURL: API_BASE_URL,
+  baseURL: "/api/",
   withCredentials: true,
 });
 
 let isRefreshing = false;
 let refreshSubscribers = [];
 
-const onRefreshed = ()=> {
+const onRefreshed = () => {
   refreshSubscribers.forEach(callback => callback())
   refreshSubscribers = []
 }
 
-const addRefreshSubscribers = (callback)=>{
+const addRefreshSubscribers = (callback) => {
   refreshSubscribers.push(callback)
 }
 
@@ -28,10 +29,9 @@ axiosInstance.interceptors.response.use(
     if (err.response?.status === 401 && !originalRequest._retry) {
       originalRequest._retry = true;
 
-      if(isRefreshing)
-      {
+      if (isRefreshing) {
         return new Promise(resolve => {
-          addRefreshSubscribers(()=>{
+          addRefreshSubscribers(() => {
             resolve(axiosInstance(originalRequest))
           });
         });
@@ -39,19 +39,26 @@ axiosInstance.interceptors.response.use(
       isRefreshing = true
 
       try {
-        const refreshRes = await axiosInstance.get("http://localhost:5205/refresh");
+        console.log("+++")
+
+        const refreshRes = await axiosInstance.get("/refresh");
         onRefreshed()
 
         return axiosInstance(originalRequest);
       } catch (refreshError) {
+     
+        console.error("Refresh token invalid or expired", refreshError);
+        console.log("+++")
         localStorage.removeItem("refreshToken");
         localStorage.removeItem("persist:auth");
 
+        window.location.href = "/login";
+
         return Promise.reject(refreshError);
       }
-      finally
-      {
+      finally {
         isRefreshing = false
+
       }
     }
 

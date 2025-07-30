@@ -22,11 +22,12 @@ export const PostCardGroup = ({
     isLikedByUser,
     image,
     authorId,
-    fetchPost
+    fetchPost,
+    comment
 }) => {
     const [postLike, setPostLike] = useState(isLikedByUser);
     const [likesCount, setLikesCount] = useState(like);
-    const [comments, setComments] = useState([]);
+    const [comments, setComments] = useState(comment);
     const [openComment, setOpenComment] = useState(false);
     const [openThreeDots, setOpenThreeDots] = useState(false);
     const [openReportModal, setOpenReportModal] = useState(false);
@@ -60,54 +61,63 @@ export const PostCardGroup = ({
 
     return (
         <>
-            <section className="flex flex-col gap-4 w-full bg-black text-white py-4 px-4 transition border border-white">
+            <section className="flex flex-col gap-4  w-full bg-black text-white px-4 py-4 sm:px-6 sm:py-6 border border-white ">
                 <div className="flex justify-between items-center">
-                    <div className="flex items-center gap-4">
+                    <div className="flex items-center gap-4 ">
                         <img
                             src={user?.avatarUrl ? `${API_BASE_URL}${user.avatarUrl}` : unknowImg}
                             alt={author || "unknown"}
-                            className="rounded-full object-cover w-[3.5rem] h-[3.5rem]"
+                            className="rounded-full object-cover w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 lg:w-8 lg:h-8"
                         />
-                        <div className="flex flex-col text-sm">
-                            <span className="font-semibold">{author || "Unknown"}</span>
-                            <span className="text-gray-400">
+                        <div className="flex flex-col text-sm max-w-[60vw] break-words break-all">
+                            <span className="font-semibold text-xs sm:text-sm md:text-base lg:text-lg ">{author || "Unknown"}</span>
+                            <span className="text-gray-400 text-xs sm:text-sm md:text-base lg:text-lg ">
                                 {formatDistanceToNow(new Date(createdAt), { addSuffix: true })} in {groupName}
                             </span>
                         </div>
                     </div>
-                    <div className="relative">
+                    <div className="relative ">
                         <img
                             src={threeDots}
                             alt=""
                             onClick={() => setOpenThreeDots(prev => !prev)}
-                            className="cursor-pointer"
+                            className="cursor-pointer w-5 h-5"
                         />
-                        <ThreeDotsModalPost
-                            open={openThreeDots}
+                        <ThreeDotsModalPost open={openThreeDots}
                             onClose={() => setOpenThreeDots(false)}
                             authorId={authorId}
                             postId={id}
                             fetchPost={fetchPost}
-                            openReport={() => setOpenReportModal(true)}
-                        />
+                            openReport={() => setOpenReportModal(true)} />
                     </div>
                 </div>
 
                 <div className="mt-2">
-                    <h1 className="text-xl font-semibold">{title}</h1>
-                    <p className="text-base mt-1 text-gray-300 break-words">{content}</p>
+                    <h1 className="text-xl font-semibold text-xs sm:text-sm md:text-base lg:text-lg ">{title}</h1>
+                    <p className="text-base mt-1 text-gray-300 break-words break-all whitespace-pre-wrap text-xs sm:text-sm md:text-base lg:text-lg">{content}</p>
                 </div>
-                {image && (<img src={`${API_BASE_URL}${image}`} />)}
-                <div className="flex space-x-2">
-                    <div className="cursor-pointer w-[1.5rem] h-[1.5rem]" onClick={pressLike}>
+
+                {image && (
+                    <img
+                        src={`${API_BASE_URL}${image}`}
+                        className="w-full max-h-[400px] object-cover rounded-md"
+                    />
+                )}
+
+                <div className="flex items-center gap-2 mt-2">
+                    <div className="cursor-pointer w-6 h-6" onClick={pressLike}>
                         <img src={postLike ? pressedLikes : likes} alt="like" />
                     </div>
                     <div>{likesCount}</div>
-                    <div className="cursor-pointer w-[1.5rem] h-[1.5rem]" onClick={handleOpenComments}>
+                    <div className="cursor-pointer w-6 h-6" onClick={handleOpenComments}>
                         <img src={commentIcon} alt="comment" />
+                    </div>
+                    <div className="w-6 h-6">
+                    {comment ? (comment?.length) : (0)}
                     </div>
                 </div>
             </section>
+
 
             <CommentModal
                 open={openComment}

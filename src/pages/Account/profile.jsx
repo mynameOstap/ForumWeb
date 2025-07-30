@@ -46,12 +46,12 @@ export const Profile = () => {
         <>
             <section className="flex bg-black  h-full justify-center">
                 <div className="w-[40%] text-white space-y-6">
-                    <div className="flex justify-between items-center">
-                        <div className="flex items-center space-x-6 ]">
-                            <img src={user?.avatarUrl ? `${API_BASE_URL}${user.avatarUrl}` : userIcon} className="rounded-full h-[5rem] w-[5rem]" />
+                    <div className="flex flex-col sm:flex-row space-y-4 justify-between items-center">
+                        <div className="flex items-center space-x-6 ">
+                            <img src={user?.avatarUrl ? `${API_BASE_URL}${user.avatarUrl}` : userIcon} className="rounded-full h-[2rem] w-[2rem] sm:h-[5rem] sm:w-[5rem]" />
                             <div>{user?.name}</div>
                         </div>
-                        <button className="border border-white  hover:bg-white hover:text-black p-2 transition h-[2.5rem] cursor-pointer"
+                        <button className="border border-white  hover:bg-white hover:text-black p-1 lg:p-2 transition text-md lg:text-base cursor-pointer"
                         onClick={handleClickAvatarEdit}>
                         {loading ?  (<Spinner/>) : ("Edit Avatar")}
                         </button>
@@ -64,9 +64,9 @@ export const Profile = () => {
                         />
                     </div>
                     <div className="w-[95%]">
-                        <div className="space-y-8">
-                            <div className="border-b-3 p-3 inline-block">Profile</div>
-                            <div className="flex justify-between items-center">
+                        <div className="space-y-8 ">
+                            <div className="border-b-3 p-3 inline-block ">Profile</div>
+                            <div className="flex flex-col sm:flex-row justify-between items-center">
                                 <div className="text-2xl font-bold">Profile</div>
                                 <button className="border border-white  hover:bg-white hover:text-black p-2 transition ">
                                 Edit Details"
